@@ -64,17 +64,17 @@ For `gitx check`, detect and run relevant checks such as `npm test`, `npm run li
 
 For `gitx push`:
 
-1. Push to `origin` or the configured `push_remote`.
-2. If the branch is not on the remote, ask whether to create it and push with `git push -u <remote> <branch>`.
-3. If no remote is configured, say that nothing was pushed.
+1. Check that a remote named `origin` exists. If it does not, say that nothing was pushed; do not select another remote automatically.
+2. Push the current branch to `origin`.
+3. If the branch is not on `origin`, ask whether to create it with `git push -u origin <branch>`.
 
 ## Pull
 
 For `gitx pull`:
 
 1. Inspect the current branch, upstream, and working tree. Do not pull with uncommitted changes that could be overwritten; explain the state and ask the user how to proceed.
-2. If no upstream is configured, explain that there is nothing to pull and offer to identify a remote branch; do not guess one.
-3. Fetch and integrate the upstream using the repository's existing pull/rebase configuration. Do not use `--force` or discard local work.
+2. Check that a remote named `origin` exists. If it does not, say that nothing was pulled; do not select another remote automatically.
+3. Pull the current branch from `origin`, using the repository's existing pull/rebase configuration. If `origin` has no branch with that name, explain that there is nothing to pull. Do not use `--force` or discard local work.
 4. If integration creates conflicts, stop the pull workflow and follow the Resolve behavior.
 
 ## Resolve merge conflicts
