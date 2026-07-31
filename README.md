@@ -1,6 +1,6 @@
 # GitX
 
-GitX is a portable Agent Skill for intelligent Git commits and safe pushes.
+GitX is a portable Agent Skill for smart Git commits, branches, checks, and safe pushes.
 
 ## Install
 
@@ -10,34 +10,21 @@ npx skills add MusoyanGrigor/gitx-skill --skill gitx
 
 The Skills CLI configures the skill for the selected supported AI agent. Start a new agent session after installation.
 
-## What it does
+## Codex Commands
 
-- Inspects your changes and makes a Conventional Commit.
-- When multiple logical commits fit, asks whether to create that number of commits or one commit.
-- Can create a `feat/`, `fix/`, or custom-prefixed branch first.
-- Pushes safely, asking before it creates a new remote branch.
+| Command | Description |
+| --- | --- |
+| `$gitx` | Inspect changes and create a smart commit. |
+| `$gitx body` | Create a smart commit with a useful commit body. |
+| `$gitx branch` | Create and switch to a new `hotfix/` branch. |
+| `$gitx branch fix/token-refresh` | Create and switch to the named branch. |
+| `$gitx push` | Safely push the current branch. |
+| `$gitx check` | Run relevant checks, then create a smart commit. |
 
-## Commands
+If GitX finds several logical commit groups, it asks whether to create the real number of commits or one commit.
 
-After invoking GitX through your AI agent's skill interface, you can ask it to:
+## Other agents
 
-- **Smart commit:** “Commit my changes.”
-- **Branch + commit:** “Create a `feat/` branch and commit these changes.”
-- **Fix branch:** “Create a `fix/token-refresh` branch, then commit.”
-- **Custom branch prefix:** “Create a `hotfix/` branch and commit.”
-- **Push:** “Push my current branch.”
-- **Check before committing:** “Commit my changes and run checks first.”
-
-GitX inspects the changes automatically. If it identifies multiple logical commits, it asks:
-
-> Do you want me to create {count} commits or one commit?
-
-### Codex example
-
-```text
-$gitx
-$gitx branch commit fix token refresh
-$gitx --check
-```
+Invoke GitX through the agent's skill interface, then use the same command words. For example: `gitx check` or `gitx branch fix/token-refresh`.
 
 GitX follows the portable `SKILL.md` Agent Skills format.
