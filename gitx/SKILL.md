@@ -1,6 +1,6 @@
 ---
 name: gitx
-description: "Run GitX commands for smart commits, commit bodies, branches, checks, safe pushes, commit previews, and Git status. Use when the user asks for gitx, a commit, a branch, checks, a push, Git status, or a commit plan."
+description: "Run GitX commands for smart commits, branches, checks, safe pull and push workflows, merge-conflict resolution, commit previews, and Git status. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a merge conflict, Git status, or a commit plan."
 ---
 
 # GitX
@@ -13,7 +13,9 @@ Interpret the user request as one GitX command. Do not present separate Smart, S
 | `gitx body` | Create a smart commit with a useful commit body. |
 | `gitx branch [name]` | Create and switch to a branch. |
 | `gitx branch check` | Create a default branch, run checks, then create a smart commit. |
+| `gitx pull` | Safely pull updates for the current branch. |
 | `gitx push` | Safely push the current branch. |
+| `gitx resolve` | Resolve an in-progress merge or rebase conflict. |
 | `gitx check` | Run relevant checks, then create a smart commit. |
 | `gitx status` | Show Git status and changed-file summary; make no changes. |
 | `gitx plan` | Preview the proposed commit groups and messages; make no changes. |
@@ -65,6 +67,25 @@ For `gitx push`:
 1. Push to `origin` or the configured `push_remote`.
 2. If the branch is not on the remote, ask whether to create it and push with `git push -u <remote> <branch>`.
 3. If no remote is configured, say that nothing was pushed.
+
+## Pull
+
+For `gitx pull`:
+
+1. Inspect the current branch, upstream, and working tree. Do not pull with uncommitted changes that could be overwritten; explain the state and ask the user how to proceed.
+2. If no upstream is configured, explain that there is nothing to pull and offer to identify a remote branch; do not guess one.
+3. Fetch and integrate the upstream using the repository's existing pull/rebase configuration. Do not use `--force` or discard local work.
+4. If integration creates conflicts, stop the pull workflow and follow the Resolve behavior.
+
+## Resolve merge conflicts
+
+For `gitx resolve` or an in-progress merge or rebase conflict:
+
+1. Inspect the operation state, history, and every conflicting file.
+2. Trace both sides of each conflict to their source commits and understand each change's intent. Read commit messages and locally available issue or PR context when present.
+3. Resolve every hunk by preserving both intents where compatible. If they conflict, choose the behavior that best fits the integration goal and clearly note the trade-off. Do not invent unrelated behavior or abort the operation unless the user explicitly asks.
+4. Run the project's relevant checks—normally typecheck, tests, then formatting—and fix problems introduced by the resolution.
+5. Stage the resolved files and finish the operation: commit the merge, or run `git rebase --continue` and repeat until the rebase completes. Do not force-push.
 
 ## Amend
 
