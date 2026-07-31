@@ -10,7 +10,7 @@ npx skills add MusoyanGrigor/gitx-skill --skill gitx
 
 The Skills CLI configures the skill for the selected supported AI agent. Start a new agent session after installation.
 
-## Codex Commands
+## Commands
 
 | Command | Description |
 | --- | --- |
