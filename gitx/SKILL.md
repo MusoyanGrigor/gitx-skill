@@ -1,6 +1,6 @@
 ---
 name: gitx
-description: Run the default Smart Git workflow: inspect changes, create one or several logical commits after confirming when several are appropriate, and safely push. Also create a tagged feat/, fix/, or custom-prefixed branch before running Smart when requested. Use for commits, split commits, pushes, shipping work, or branch-first workflows.
+description: "Run the default Smart Git workflow: inspect changes, create one or several logical commits after confirming when several are appropriate, and safely push. Also create a tagged feat/, fix/, or custom-prefixed branch before running Smart when requested. Use for commits, split commits, pushes, shipping work, or branch-first workflows."
 ---
 
 # GitX
