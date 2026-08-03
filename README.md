@@ -16,9 +16,9 @@ The Skills CLI configures the skill for the selected supported AI agent. Start a
 | --- | --- |
 | `$gitx` | Inspect changes and create a smart commit. |
 | `$gitx body` | Create a smart commit with a useful commit body. |
-| `$gitx branch` | Create and switch to a new `hotfix/` branch. |
+| `$gitx branch` | Create and switch to a branch with an inferred prefix, such as `feat/` or `fix/`. |
 | `$gitx branch fix/token-refresh` | Create and switch to the named branch. |
-| `$gitx branch check` | Create a default branch, run checks, then commit. |
+| `$gitx branch check` | Create an inferred branch, run checks, then commit. |
 | `$gitx pull` | Safely pull updates for the current branch. |
 | `$gitx push` | Safely push the current branch. |
 | `$gitx resolve` | Resolve an in-progress merge or rebase conflict. |
