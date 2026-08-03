@@ -32,8 +32,8 @@ The Skills CLI configures the skill for the selected supported AI agent. Start a
 
 If GitX finds several logical commit groups, it asks whether to create the real number of commits or one commit.
 
-## Other agents
+## Usage
 
-Invoke GitX through the agent's skill interface, then use the same command words. For example: `gitx plan`, `gitx check`, or `gitx branch fix/token-refresh`.
+Invoke GitX through your AI agent's skill interface, then use the same command words. For example: `gitx plan`, `gitx check`, or `gitx branch fix/token-refresh`.
 
 GitX follows the portable `SKILL.md` Agent Skills format.
