@@ -1,6 +1,8 @@
 # GitX
 
-GitX is a portable Agent Skill for smart Git commits, branches, checks, GitHub pull requests and issues, previews, and safe pushes.
+Turn messy AI-generated changes into clean, safe Git history.
+
+GitX is a portable AI-agent skill that analyzes your changes, groups related files into logical commits, generates Conventional Commit messages, runs project checks, and safely creates branches, pushes, and pull requests.
 
 ## Install
 
