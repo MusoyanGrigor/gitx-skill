@@ -1,6 +1,6 @@
 # GitX
 
-GitX is a portable Agent Skill for smart Git commits, branches, checks, pull requests, previews, and safe pushes.
+GitX is a portable Agent Skill for smart Git commits, branches, checks, GitHub pull requests and issues, previews, and safe pushes.
 
 ## Install
 
@@ -23,6 +23,7 @@ The Skills CLI configures the skill for the selected supported AI agent. Start a
 | `$gitx push` | Safely push the current branch. |
 | `$gitx pr` | Create a GitHub pull request into `origin`'s default branch with a generated title and body. |
 | `$gitx pr develop` | Create a GitHub pull request from the current branch into `develop`. |
+| `$gitx issue Login fails after token expiry` | Create a GitHub issue with a generated title and body. |
 | `$gitx resolve` | Resolve an in-progress merge or rebase conflict. |
 | `$gitx check` | Run relevant checks, then create a smart commit. |
 | `$gitx status` | Show repository status without changing anything. |

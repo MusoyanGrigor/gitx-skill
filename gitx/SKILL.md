@@ -1,6 +1,6 @@
 ---
 name: gitx
-description: "Run GitX commands for smart commits, branches, checks, safe pull and push workflows, GitHub pull requests, merge-conflict resolution, commit previews, and Git status. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a pull request or PR, a merge conflict, Git status, or a commit plan."
+description: "Run GitX commands for smart commits, branches, checks, safe pull and push workflows, GitHub pull requests and issues, merge-conflict resolution, commit previews, and Git status. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a pull request or PR, an issue, a merge conflict, Git status, or a commit plan."
 ---
 
 # GitX
@@ -18,6 +18,7 @@ An exact `gitx` request is an explicit instruction to run Smart commit immediate
 | `gitx pull` | Safely pull updates for the current branch. |
 | `gitx push` | Safely push the current branch. |
 | `gitx pr [base]` | Create a GitHub pull request into the default branch or the supplied base branch. |
+| `gitx issue <description>` | Create a GitHub issue with a generated title and body. |
 | `gitx resolve` | Resolve an in-progress merge or rebase conflict. |
 | `gitx check` | Run relevant checks, then create a smart commit. |
 | `gitx status` | Show Git status and changed-file summary; make no changes. |
@@ -102,6 +103,30 @@ For `gitx pr [base]`:
    ```
 
 7. Create the ready-for-review PR with `gh pr create --base <resolved-base> --head <current-branch> --title <generated-title> --body <generated-body>` and return its URL. Do not create a draft PR unless the user explicitly asks.
+
+## Issue
+
+For `gitx issue <description>`:
+
+1. Require a remote named `origin` and a GitHub repository with an authenticated `gh` CLI. If either is unavailable, explain what is missing and do not create an issue.
+2. Require a concrete issue description. If none is supplied, ask the user what the issue is about and do not create an issue yet.
+3. Generate a concise issue title and a normal Markdown body using only facts supplied by the user or available task context:
+
+   ```md
+   ## Problem
+
+   <actual problem>
+
+   ## Expected behavior
+
+   <expected result, or "Not specified">
+
+   ## Notes
+
+   - <relevant reproduction, context, or "No additional details provided">
+   ```
+
+4. Create the issue with `gh issue create --title <generated-title> --body <generated-body>` and return its URL. Do not add labels, assignees, milestones, or projects unless the user explicitly asks.
 
 ## Resolve merge conflicts
 
