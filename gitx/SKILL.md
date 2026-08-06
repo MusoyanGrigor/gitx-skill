@@ -1,6 +1,6 @@
 ---
 name: gitx
-description: "Run GitX commands for smart commits, branches, checks, safe pull and push workflows, GitHub pull requests and issues, merge-conflict resolution, commit previews, and Git status. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a pull request or PR, an issue, a merge conflict, Git status, or a commit plan."
+description: "Run GitX commands for smart commits, branches, checks, safe pull and push workflows, GitHub pull requests and issues, merge-conflict resolution, commit previews, and Git status. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a pull request or PR, a GitHub issue or to create an issue, a merge conflict, Git status, or a commit plan."
 ---
 
 # GitX
