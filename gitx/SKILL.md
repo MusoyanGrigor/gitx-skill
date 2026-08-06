@@ -1,6 +1,6 @@
 ---
 name: gitx
-description: "Run GitX commands for smart commits, branches, checks, safe pull and push workflows, merge-conflict resolution, commit previews, and Git status. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a merge conflict, Git status, or a commit plan."
+description: "Run GitX commands for smart commits, branches, checks, safe pull and push workflows, GitHub pull requests, merge-conflict resolution, commit previews, and Git status. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a pull request or PR, a merge conflict, Git status, or a commit plan."
 ---
 
 # GitX
@@ -17,6 +17,7 @@ An exact `gitx` request is an explicit instruction to run Smart commit immediate
 | `gitx branch check` | Create a default branch, run checks, then create a smart commit. |
 | `gitx pull` | Safely pull updates for the current branch. |
 | `gitx push` | Safely push the current branch. |
+| `gitx pr [base]` | Create a GitHub pull request into the default branch or the supplied base branch. |
 | `gitx resolve` | Resolve an in-progress merge or rebase conflict. |
 | `gitx check` | Run relevant checks, then create a smart commit. |
 | `gitx status` | Show Git status and changed-file summary; make no changes. |
@@ -78,6 +79,29 @@ For `gitx pull`:
 2. Check that a remote named `origin` exists. If it does not, say that nothing was pulled; do not select another remote automatically.
 3. Pull the current branch from `origin`, using the repository's existing pull/rebase configuration. If `origin` has no branch with that name, explain that there is nothing to pull. Do not use `--force` or discard local work.
 4. If integration creates conflicts, stop the pull workflow and follow the Resolve behavior.
+
+## Pull request
+
+For `gitx pr [base]`:
+
+1. Require a remote named `origin` and a GitHub repository with an authenticated `gh` CLI. If either is unavailable, explain what is missing and do not create a PR.
+2. Inspect the current branch, working tree, commits, and diff against the base branch. Do not include uncommitted changes in the PR. If the current branch is the base branch or has no commits ahead of it, stop and explain why.
+3. Use the supplied `[base]` branch exactly after verifying it exists on `origin`. Without `[base]`, detect the default branch from `origin/HEAD`; if it cannot be determined, ask the user which base branch to use. Never hardcode `main`.
+4. Check whether a PR already exists for the current branch. If it does, return its URL and do not create another one.
+5. Push the current branch to `origin` when needed. If it has no upstream, create one with `git push -u origin <branch>` because `gitx pr` explicitly requests publication. Never force-push.
+6. Generate a concise PR title from the commits and diff. Generate a normal Markdown body using this structure, with only facts supported by the changes:
+
+   ```md
+   ## Summary
+
+   - <actual change>
+
+   ## Testing
+
+   - <checks run during this task, or "Not run (not requested)">
+   ```
+
+7. Create the ready-for-review PR with `gh pr create` and return its URL. Do not create a draft PR unless the user explicitly asks.
 
 ## Resolve merge conflicts
 
