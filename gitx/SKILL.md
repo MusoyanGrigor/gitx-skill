@@ -84,10 +84,10 @@ For `gitx pull`:
 
 For `gitx pr [base]`:
 
-1. Require a remote named `origin` and a GitHub repository with an authenticated `gh` CLI. If either is unavailable, explain what is missing and do not create a PR.
-2. Inspect the current branch, working tree, commits, and diff against the base branch. Do not include uncommitted changes in the PR. If the current branch is the base branch or has no commits ahead of it, stop and explain why.
-3. Use the supplied `[base]` branch exactly after verifying it exists on `origin`. Without `[base]`, detect the default branch from `origin/HEAD`; if it cannot be determined, ask the user which base branch to use. Never hardcode `main`.
-4. Check whether a PR already exists for the current branch. If it does, return its URL and do not create another one.
+1. Require a remote named `origin`, a named current branch, and a GitHub repository with an authenticated `gh` CLI. If any is unavailable, explain what is missing and do not create a PR.
+2. Use the supplied `[base]` branch exactly after verifying it exists on `origin`. Without `[base]`, detect the default branch from `origin/HEAD`; if it cannot be determined, ask the user which base branch to use. Never hardcode `main`.
+3. Inspect the working tree, commits, and diff from the resolved base branch to the current branch. Do not include uncommitted changes in the PR. If the current branch is the base branch or has no commits ahead of it, stop and explain why.
+4. Check whether a PR already exists for the current branch and resolved base branch. If it does, return its URL and do not create another one.
 5. Push the current branch to `origin` when needed. If it has no upstream, create one with `git push -u origin <branch>` because `gitx pr` explicitly requests publication. Never force-push.
 6. Generate a concise PR title from the commits and diff. Generate a normal Markdown body using this structure, with only facts supported by the changes:
 
@@ -101,7 +101,7 @@ For `gitx pr [base]`:
    - <checks run during this task, or "Not run (not requested)">
    ```
 
-7. Create the ready-for-review PR with `gh pr create` and return its URL. Do not create a draft PR unless the user explicitly asks.
+7. Create the ready-for-review PR with `gh pr create --base <resolved-base> --head <current-branch> --title <generated-title> --body <generated-body>` and return its URL. Do not create a draft PR unless the user explicitly asks.
 
 ## Resolve merge conflicts
 
