@@ -1,6 +1,6 @@
 ---
 name: gitx
-description: "Turn messy AI-generated changes into clean, safe Git history with smart commits, branches, checks, safe pulls and pushes, and GitHub PRs or issues. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a pull request or PR, a GitHub issue or to create an issue, a merge conflict, Git status, or a commit plan."
+description: "Turn messy AI-generated changes into clean, safe Git history with smart commits, branches, checks, safe pulls and pushes, GitHub PRs, and GitHub issue creation or fixes. Use when the user asks for gitx, a commit, a branch, checks, pull, push, a pull request or PR, a GitHub issue, to create an issue, to fix an issue, a merge conflict, Git status, or a commit plan."
 ---
 
 # GitX
