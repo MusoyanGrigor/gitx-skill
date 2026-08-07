@@ -70,7 +70,7 @@ For `gitx push`:
 
 1. Check that a remote named `origin` exists. If it does not, say that nothing was pushed; do not select another remote automatically.
 2. Push the current branch to `origin`.
-3. If the branch is not on `origin`, ask exactly: `This branch is not on origin. Do you want to push <branch> to origin now?` Push with `git push -u origin <branch>` only after the user confirms.
+3. If the branch is not on `origin` and the user requested only `gitx push`, ask exactly: `This branch is not on origin. Do you want to push <branch> to origin now?` Push with `git push -u origin <branch>` only after the user confirms. If the user explicitly says to push to `origin`, push with `git push -u origin <branch>` immediately.
 
 ## Pull
 
