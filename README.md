@@ -22,7 +22,7 @@ The Skills CLI configures the skill for the selected supported AI agent. Start a
 | `$gitx branch fix/token-refresh` | Create and switch to the named branch. |
 | `$gitx branch check` | Create an inferred branch, run checks, then commit. |
 | `$gitx pull` | Safely pull updates for the current branch. |
-| `$gitx push` | Safely push the current branch. |
+| `$gitx push` | Push the current branch to `origin`; create its upstream if needed. |
 | `$gitx pr` | Create a GitHub pull request into `origin`'s default branch with a generated title and body. |
 | `$gitx pr develop` | Create a GitHub pull request from the current branch into `develop`. |
 | `$gitx issue Login fails after token expiry` | Create a GitHub issue with a generated title and body. |
