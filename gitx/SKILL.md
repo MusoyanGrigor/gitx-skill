@@ -5,9 +5,9 @@ description: "Run GitX commands for smart commits, branches, checks, safe pull a
 
 # GitX
 
-Interpret the user request as one GitX command. Do not present separate Smart, Split, or Ship modes.
+## Dispatch
 
-An exact `gitx` request is an explicit instruction to run Smart commit immediately. Do not show the command list, ask the user to choose a command, or ask for confirmation before inspecting the changes. Ask only when Smart commit finds two or more logical commit groups, as specified below. Show the command list only when the user asks for help or available commands.
+Treat a bare GitX invocation as Smart commit. This includes `$gitx`, `gitx`, and a skill-UI invocation that loads GitX without extra command text. Immediately inspect the repository and run the Smart commit workflow. Return a command list only for an explicit help or available-commands request. Ask only when Smart commit finds two or more logical commit groups, as specified below.
 
 | Command | Action |
 | --- | --- |
