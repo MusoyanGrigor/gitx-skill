@@ -109,8 +109,7 @@ For `gitx pr [base]`:
 For `gitx issue <number>` where `<number>` is numeric:
 
 1. Require a remote named `origin` and an authenticated `gh` CLI. Read the issue title, body, comments, and status with `gh issue view <number>`. If the issue is closed or lacks enough information to implement safely, explain why and ask for direction.
-2. On the default branch, create and switch to a branch named `fix/<number>-<issue-title-slug>`. On another branch, keep the current branch and tell the user which branch will receive the fix.
-3. Implement only the issue's requested change. Run relevant checks, then follow Smart commit behavior. Do not push or create a PR unless the user asks.
+2. Implement only the issue's requested change in the current working tree. Do not create or switch branches, run checks, commit, push, or create a PR unless the user explicitly asks.
 
 For `gitx issue <description>`:
 

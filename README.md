@@ -26,7 +26,7 @@ The Skills CLI configures the skill for the selected supported AI agent. Start a
 | `$gitx pr` | Create a GitHub pull request into `origin`'s default branch with a generated title and body. |
 | `$gitx pr develop` | Create a GitHub pull request from the current branch into `develop`. |
 | `$gitx issue Login fails after token expiry` | Create a GitHub issue with a generated title and body. |
-| `$gitx issue 123` | Read GitHub issue `#123`, create a fix branch when needed, implement it, run checks, and smart-commit the fix. |
+| `$gitx issue 123` | Read GitHub issue `#123` and implement the requested fix in the current working tree. |
 | `$gitx resolve` | Resolve an in-progress merge or rebase conflict. |
 | `$gitx check` | Run relevant checks, then create a smart commit. |
 | `$gitx status` | Show repository status without changing anything. |
