@@ -17,6 +17,7 @@ Treat a bare GitX invocation as Smart commit. This includes `$gitx`, `gitx`, and
 | `gitx branch check` | Create a default branch, run checks, then create a smart commit. |
 | `gitx pull` | Safely pull updates for the current branch. |
 | `gitx push` | Safely push the current branch. |
+| `gitx push origin` | Push the current branch to `origin` immediately. |
 | `gitx pr [base]` | Create a GitHub pull request into the default branch or the supplied base branch. |
 | `gitx issue <description>` | Create a GitHub issue with a generated title and body. |
 | `gitx resolve` | Resolve an in-progress merge or rebase conflict. |
@@ -70,7 +71,8 @@ For `gitx push`:
 
 1. Check that a remote named `origin` exists. If it does not, say that nothing was pushed; do not select another remote automatically.
 2. Push the current branch to `origin`.
-3. If the branch is not on `origin` and the user requested only `gitx push`, ask exactly: `This branch is not on origin. Do you want to push <branch> to origin now?` Push with `git push -u origin <branch>` only after the user confirms. If the user explicitly says to push to `origin`, push with `git push -u origin <branch>` immediately.
+3. For `gitx push origin`, or any request that explicitly says `push origin`, treat the request as authorization to publish a new branch. If needed, run `git push -u origin <branch>` immediately.
+4. For `gitx push` with no explicit `origin`, if the branch is not on `origin`, ask exactly: `This branch is not on origin. Do you want to push <branch> to origin now?` Push with `git push -u origin <branch>` only after the user confirms.
 
 ## Pull
 
