@@ -19,6 +19,7 @@ Treat a bare GitX invocation as Smart commit. This includes `$gitx`, `gitx`, and
 | `gitx push` | Push the current branch to `origin`. |
 | `gitx pr [base]` | Create a GitHub pull request into the default branch or the supplied base branch. |
 | `gitx issue <description>` | Create a GitHub issue with a generated title and body. |
+| `gitx issue <number>` | Fix the GitHub issue with that number. |
 | `gitx resolve` | Resolve an in-progress merge or rebase conflict. |
 | `gitx check` | Run relevant checks, then create a smart commit. |
 | `gitx status` | Show Git status and changed-file summary; make no changes. |
@@ -104,6 +105,12 @@ For `gitx pr [base]`:
 7. Create the ready-for-review PR with `gh pr create --base <resolved-base> --head <current-branch> --title <generated-title> --body <generated-body>` and return its URL. Do not create a draft PR unless the user explicitly asks.
 
 ## Issue
+
+For `gitx issue <number>` where `<number>` is numeric:
+
+1. Require a remote named `origin` and an authenticated `gh` CLI. Read the issue title, body, comments, and status with `gh issue view <number>`. If the issue is closed or lacks enough information to implement safely, explain why and ask for direction.
+2. On the default branch, create and switch to a branch named `fix/<number>-<issue-title-slug>`. On another branch, keep the current branch and tell the user which branch will receive the fix.
+3. Implement only the issue's requested change. Run relevant checks, then follow Smart commit behavior. Do not push or create a PR unless the user asks.
 
 For `gitx issue <description>`:
 
